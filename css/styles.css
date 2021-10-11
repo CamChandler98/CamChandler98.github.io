@@ -11429,6 +11429,7 @@ html {
   font-size: 1.25rem;
 }
 .masthead .masthead-avatar {
+    border-radius: 50%;
   width: 15rem;
 }
 
@@ -11448,7 +11449,9 @@ html {
 .portfolio .portfolio-item {
   cursor: pointer;
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 25rem;
   border-radius: 0.5rem;
   overflow: hidden;
