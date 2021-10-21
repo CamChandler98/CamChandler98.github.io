@@ -11456,7 +11456,7 @@ html {
   border-radius: 0.5rem;
   overflow: hidden;
 }
-.skills .skill{
+.skill{
   position: relative;
   display: flex;
   flex-direction: column;
