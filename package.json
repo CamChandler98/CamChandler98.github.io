@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "animejs": "^3.2.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  },
+  "scripts": {
+    "deploy": "npm run build && gh-pages -d dist"
+  }
+}
