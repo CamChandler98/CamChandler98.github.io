@@ -159,7 +159,7 @@
 
 						if(href = 'void' )
 						{
-							console.log("void")
+							//console.log("void")
 							// $this.removeClass('is-transitioning');
 							// $wrapper.removeClass('is-transitioning');
 							return
@@ -342,6 +342,86 @@
 
 			});
 
+			let colors = [
+				 "#87a8eb",
+				"#b374b3",
+				 '#c6758c'
+		]
+
+
+
+			document.querySelectorAll('.motto-text').forEach((item,i) => {
+				let color = colors[i]
+
+				item.style.backgroundColor = color;
+
+				let itemText = item.querySelector('p')
+
+				itemText.style.textTransform = 'uppercase'
+				itemText.style.opacity = 0
+
+				let spans = itemText.innerText.replace(/\S/g, "<span class='letter'>$&</span>");
+
+				itemText.innerHTML = spans
+			})
+			$('#aboutModal').on('shown.bs.modal', function (e) {
+				// do something...
+				let modal = e.currentTarget
+
+				let item = modal.querySelector('.active')
+
+				let itemText = item.querySelector('p')
+				itemText.style.opacity = 0
+				let letters = itemText.querySelectorAll('.letter')
+
+				anime.timeline({loop: false})
+				.add({
+				  targets: [itemText, ...letters],
+				  scale: [4,1],
+				  opacity: [0,1],
+				//   translateZ: 0,
+				  easing: "easeOutExpo",
+				  duration: 930,
+				  delay: (el, i) => 70*i
+				})
+			  })
+			  $('#aboutModal').on('hide.bs.modal', function (e) {
+
+				console.log('hidden?')
+				let modal = e.currentTarget
+
+				let item = modal.querySelector('.active')
+
+				let itemText = item.querySelector('p')
+				itemText.style.opacity = 0
+				let letters = itemText.querySelectorAll('.letter')
+
+				letters.forEach(letter => {
+					letter.style.opacity = 0
+				})
+
+				
+			  })
+			$('#aboutCarousel').on('slide.bs.carousel', function (e) {
+				//console.log('slid')
+				let item = e.relatedTarget
+				let itemText = item.querySelector('p')
+				itemText.style.opacity = 0
+				let letters = itemText.querySelectorAll('.letter')
+
+				anime.timeline({loop: false})
+				.add({
+				  targets: [itemText, ...letters],
+				  scale: [4,1],
+				  opacity: [0,1],
+				//   translateZ: 0,
+				  easing: "easeOutExpo",
+				  duration: 930,
+				  delay: (el, i) => 70*i
+				})
+
+			  })
+	
 			let gliders = document.querySelectorAll('.glide')
 			let gliderInterfaces = []
 			let gliderTracks = []
@@ -361,9 +441,9 @@
 
 				
 			// 	// newGlider.on("mount.after" , ()=> {
-			// 	// 	console.log('setting move slide')				
+			// 	// 	//console.log('setting move slide')				
 			// 	// 	setInterval(()=> {
-			// 	// 		// console.log('tick')
+			// 	// 		// //console.log('tick')
 			// 	// 		glideTrack.dispatchEvent(new Event ('moveslide', {bubbles:true}))
 			// 	// 	}, 100)	
 			// 	// })
@@ -413,7 +493,7 @@
 				
 				// newGlider.on("mount.after" , ()=> {
 					
-				// console.log('setting move slide')				
+				// //console.log('setting move slide')				
 				// newGlider.disable()
 				
 
@@ -493,7 +573,7 @@
 					if(entry.intersectionRatio <= .1  ){
 						// debugger
 						slide.style.borderColor = 'green'
-						console.log('LEAVE')
+						////console.log('LEAVE')
 						let passed = slide.getAttribute('passed')
 						let parent = slide.parentElement;
 						if(!parent)
@@ -501,7 +581,7 @@
 							return
 						}
 
-						console.log(parent.children.length)
+						////console.log(parent.children.length)
 						if(passed == 'true'){
 							// debugger
 							let clone = slide.cloneNode(true)
@@ -556,10 +636,6 @@
 		
 
 
-			const fakeEvent = new CustomEvent("moveslide", (e) => {
-
-
-			})
 
 			
 
@@ -577,11 +653,15 @@
 					
 						let parentWidth = slide.parentElement.offsetWidth;
 						
-						let slideWidth = parentWidth / 4
+						let slideWidth = parentWidth / 5
 						
 						let index = Array.from(slide.parentElement.children).indexOf(slide)
+
+						let text = slide.querySelector('p')
+
+						text.classList.add('skill-text')
 						
-						console.log(index,length)
+						//console.log(index,length)
 						
 						
 						slide.style.width = `${slideWidth}px`
@@ -607,6 +687,7 @@
 
 						glideTrack.style.visibility = 'visible'
 						let slides = glideTrack.querySelectorAll('.glide__slide')
+						let skillDivs = glideTrack.querySelectorAll('.skill-slide')
 
 						let interval
 						
@@ -619,7 +700,23 @@
 						}
 						let tracker = glideTrack.querySelector('.tracker')
 						let junmpThreshold = 0.5
-						let step = .75
+						let step = 1.5	
+
+						let initialRotation  = '20deg'
+						let initialTranslateY
+
+						
+						let mqSmall = window.matchMedia('screen and (max-width: 736px)')
+
+						if(mqSmall.matches)
+						{
+							initialTranslateY = '0px'
+						}
+						else
+						{
+							initialTranslateY = '-40px'
+						}
+
 
 						let moveTrack = () => {
 							
@@ -633,11 +730,11 @@
 							
 							let targetPosition = tracker.dataset.targetPosition
 							
-							console.log("target", targetPosition)
-							console.log('position', xPos)
+							//console.log("target", targetPosition)
+							//console.log('position', xPos)
 							
 							if(xPos >= targetPosition){
-								console.log('bingo')
+								//console.log('bingo')
 								val = -step
 							}
 
@@ -645,6 +742,8 @@
 							
 							val += step
 							slideWrapper.dataset.val = val
+
+
 							const translate3d = `translate3d(${val}px, 0px, 0px)`
 							
 							slideWrapper.style.mozTransform = translate3d // needed for supported Firefox 10-15
@@ -655,18 +754,62 @@
 							
 						}
 
+						anime({
+							targets: '.skill-slide',
+							translateY: [
+								{ value: initialTranslateY, duration: 0, delay: 0}
+							],
+							rotate: [
+								{ value: initialRotation, duration: 0, delay: 0}
+
+							],
+							autoplay: false,
+							loop: false,
+						})
 
 
-						glideTrack.addEventListener('mouseover', () => {
+						
+						let swingSlides = anime({
+							targets: skillDivs,
+		
+							rotate: 29,
+							loop: true,
+							direction: 'alternate',
+							easing: 'easeInOutSine',
+							duration: 800,
+							autoplay: false,
+
+						})
+
+						let AnimEndDelay = 400
+						slideWrapper.addEventListener('mouseover', () => {
 							canMove = false
+							
+							console.log(swingSlides)
+
+							let stopSwingInterval = setInterval(() => {
+
+								
+								if(swingSlides.progress < 70.0){
+									clearInterval(stopSwingInterval)
+									swingSlides.pause()
+								}
+
+							}, 1)
+
+			
 						})
 
-						glideTrack.addEventListener('mouseout', () => {
+						slideWrapper.addEventListener('mouseout', () => {
 							canMove = true
+							setTimeout(() => {
+								
+								swingSlides.play()
+							}, 100)
 						})
 
+						swingSlides.play()
 						interval = setInterval(moveTrack,1)
-
 
 						window.addEventListener('keydown', e => {
 							if (e.code === "Backspace")

@@ -6,6 +6,6 @@
     "gh-pages": "^5.0.0"
   },
   "scripts": {
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist -b master"
   }
 }

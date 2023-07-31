@@ -1,5 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 /*
 	Forty by Pixelarity
@@ -31,6 +32,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	height: 100%;
 }
 
 ol, ul {
@@ -2905,7 +2907,7 @@ input, select, textarea {
 
 /* Contact Method */
 
-	.contact-method {
+	.contact-method, .around-the-web {
 		margin: 0 0 2em 0;
 		padding-left: 3.25em;
 		position: relative;
@@ -2917,7 +2919,17 @@ input, select, textarea {
 			top: 0;
 		}
 
-		.contact-method h3 {
+		.around-the-web h3 {
+			margin: 0 0 0.5em 0;
+		}
+
+		.around-the-web div .icon {
+			left: 0;
+			position: absolute;
+			top: 0;
+		}
+
+		.around-the-web h3 {
 			margin: 0 0 0.5em 0;
 		}
 
@@ -3637,10 +3649,7 @@ input, select, textarea {
 			margin: 0 50%;
 
 		  } 
-		  .modal .carousel-inner{
-			margin: 0 auto;
-			width: 50%;
-		  }
+
 
 		  .modal .carousel-item.active
 		  {
@@ -3662,10 +3671,24 @@ input, select, textarea {
 			width: auto;
 		  }
 
-		  .modal .carousel-item
+		  .modal .carousel-inner{
+			/* margin: 0 auto; */
+			height: 100%;
+			display: flex;
+		  }
+
+		.carousel-item.active,
+		.carousel-item-next,
+		.carousel-item-prev {
+		display: flex;
+
+		}
+
+		  .modal .carousel-item .about-slide
 		  {
 		
 			width: auto;
+			height: 500px;
 		  }
 
 		  .carousel-control-prev,
@@ -3687,12 +3710,8 @@ input, select, textarea {
 		transition: opacity 0.15s ease;
 		}
 
-		  .skill img{
-			width: 40%;
-			height: 40%;
-			margin: 0 50%;
 
-		  }
+
 
 		  .modal .modal-content .skill p
 		  {
@@ -3709,13 +3728,57 @@ input, select, textarea {
 			margin: -0.5rem -0.5rem -0.5rem auto;
 		  }
 
-		  .modal .modal-content p {
+		  .modal .modal-content p:not('.skill-text'){
 			text-align: center;
 
-			margin: 3% 8% 3% 8%;
+			margin: 1% 2% ;
+			font-weight: 500;
 
-			font-size: 1.5rem
+			font-size: 1.7rem
 			;
+		  }
+		  .modal .modal-content header.major{
+			margin-bottom: 1em;
+		  }
+
+		  .about-slide{
+			display: flex;
+			align-items: center;
+		  }
+
+		  .about-slide p {
+			font-size: 1.15em;
+			font-weight: 300;
+			font-family: "Roboto" , sans-serif;
+		  }
+		  .modal .modal-content .motto-text p {
+			font-weight: 900;
+			font-size: 4.5em;
+			margin: 0;
+			/* word-break: break-all; */
+			max-height: 20%;
+			word-spacing: .2rem;
+			text-align: center;
+			/* white-space: normal; */
+			line-height: .9;
+			font-family: "Roboto" , sans-serif;
+
+		  }
+		  
+		  .modal .modal-content .motto-text  {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			word-spacing: .5rem;
+			min-height: 100%;
+			min-width:55%;
+			white-space: normal;
+			margin-right: 1.5rem;
+		  }
+		  
+		  .modal .modal-content .motto-text p .letter {
+			display: inline-block;
+			line-height: 1em;
 		  }
 
 		  .modal .major{
@@ -3725,6 +3788,9 @@ input, select, textarea {
 			width: 100%
 		  }
 
+		  .modal.major h1{
+			font-family: "Fira", sans-serif;
+		  }
 		  .modal-header .btn-close {
 			box-sizing: content-box;
 			width: 1em;
@@ -3739,19 +3805,39 @@ input, select, textarea {
 		  }
 
 
-		  
+		  #skillsModal .modal-content{
+			background-color: #b374b3;
+		  }
 
+	 .modal-content header.major > :first-child:after{
+			content: normal;
+			margin: 0;
+		  }
 		  .glide {
 			position: relative;
 			width: 100%;
 			box-sizing: border-box;
+
+			margin-bottom: 20px;
+		  }
+
+		  .glide::before{
+			content: '';
+			background-color: #ffffff;
+			display: block;
+			height: .5px;
+			margin-bottom: -32px;
+			width: 100%;
 		  }
 		  .glide * {
 			box-sizing: inherit;
+
 		  }
 		  .glide__track {
 			overflow: hidden;
-			/* border : thick solid #0000FF; */
+			border-right:solid 1px #ffff;
+			border-left:solid 1px #ffff;
+
 
 		  }
 		  .glide__slides {
@@ -3769,12 +3855,24 @@ input, select, textarea {
 			white-space: nowrap;
 			display: flex;
 			flex-direction: row-reverse;
-
+			transition:  ' transform 0ms cubic-bezier(0.165, 0.84, 0.44, 1) 0s';
 			flex-wrap: nowrap;
 			will-change: transform;
 		  }
-
-;
+		  .glide__slide {
+			box-sizing: border-box;
+			display: flex;
+			width: 100%;
+			flex-shrink: 0;
+			white-space: normal;
+			user-select: none;
+			-webkit-touch-callout: none;
+			/* position: relative; */
+			left: 0px;
+			z-index: 100;
+			margin: 5% 5%;
+			
+		  }
 
 		  .skill-slide, .skill-slide *{
 			pointer-events: none;
@@ -3785,30 +3883,105 @@ input, select, textarea {
 		  }
 
 		  .skill-slide{
-			/* display: flex; */
+			display: flex;
 			flex-direction: column;
 			align-items: center;
 		  }
-		  .glide__slide {
-			box-sizing: border-box;
 
+		  .skill-slide{
 			width: 100%;
 			height: 100%;
-			flex-shrink: 0;
-			white-space: normal;
-			user-select: none;
-			-webkit-touch-callout: none;
-			/* position: relative; */
-			left: 0px;
-			z-index: 100;
-			margin: auto 5%;
+			background-color:  #242943;;
+			border-radius: 5%;
+			padding: 10%;
+			transform-origin: top left;
+			transform: rotate(20deg) translateY(-40px);
+		}
+
+		p.skill-text{
+			font-weight: 900;
+			margin: auto;
+			font-size: large;
+		}
+
+		  .skill-slide img{
+			width: 60%;
+			height: 60%;
+			margin: 0 50%;
+
 		  }
+
 
 		@media screen and (max-width: 736px) {
 			.modal-lg,
 		  .modal-xl {
 			  max-width: 800px;
 			}
+
+			.about-slide{
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+				/* overflow-y: scroll;
+				overflow-x: hidden; */
+			  }
+
+			  .modal .modal-content .motto-text  {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				word-spacing: .5rem;
+				min-height: 40%;
+				min-width:100%;
+				white-space: normal;
+				margin-bottom: 5%;
+				margin-right: normal;
+			  }
+
+			  .modal .modal-content .motto-text p {
+				font-weight: 900;
+				font-size: 3.3em;
+				margin: 0;
+				/* word-break: break-all; */
+				max-height: 20%;
+				word-spacing: .2rem;
+				text-align: center;
+				/* white-space: normal; */
+				line-height: .9;
+				font-family: "Roboto" , sans-serif;
+	
+			  }
+			  #skillsModal{
+				top: 25%
+			  }
+			  .glide {
+				position: relative;
+				width: 100%;
+				height: 10vh;
+				box-sizing: border-box;
+				margin-top: 10%;
+				margin-bottom: 20%;
+			  }
+
+			  .glide__slide{
+				margin: 8% 5%;
+			  }
+
+			.skill-slide{
+				width: 100%;
+				height: 100%;
+				background-color:  #242943;;
+				border-radius: 5%;
+				padding: 10%;
+				transform-origin: top left;
+				transform: rotate(20deg) translateY(0px);
+			}
+
+				p.skill-text{
+					font-weight: 600;
+					margin: auto;
+					font-size: xx-small;
+				}
 		  }
 		  @media screen  and (max-width: 1280px) {
 			.modal-xl {
@@ -3820,6 +3993,9 @@ input, select, textarea {
 			.parent-modal .modal-dialog{
 				max-width: 1140px;
 			  }
+
+
+
 
 		  }
 
