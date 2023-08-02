@@ -151,12 +151,6 @@
 					$link.on('click', function(event) {
 						
 						// Prevent default.
-						// event.stopPropagation();
-						event.preventDefault();
-
-						
-						var href = $link.attr('href');
-
 						if(href = 'void' )
 						{
 							//console.log("void")
@@ -164,6 +158,12 @@
 							// $wrapper.removeClass('is-transitioning');
 							return
 						}
+						event.stopPropagation();
+						event.preventDefault();
+
+						
+						var href = $link.attr('href');
+
 
 						// Target blank?
 							if ($link.attr('target') == '_blank') {
